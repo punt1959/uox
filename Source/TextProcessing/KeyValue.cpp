@@ -232,7 +232,7 @@ const std::map<std::string, KeyValue::KeyType> KeyValue::_keyenum_mapping = {
 	{"WRESTLING",		 	wrestling},
 	{"LOCATION",			location}
 };
-
+/*
 const std::map<KeyValue::KeyType, KeyValueType> KeyValue::_keytype_mapping = {
 	{armorclass,		KeyValueType::numeric },
 	{advanceobj,		KeyValueType::numeric},
@@ -286,7 +286,7 @@ const std::map<KeyValue::KeyType, KeyValueType> KeyValue::_keytype_mapping = {
 	{fame,			KeyValueType::numeric },
 	{fencing,			KeyValueType::doublenumeric },
 	{fishing,			KeyValueType::doublenumeric },
-	{flag,			KeyValueType::doublenumeric },
+	{flag,			KeyValueType::uppertext },
 	{flee,			KeyValueType::numeric },
 	{fleespeed,			KeyValueType::text },
 	{focus,			KeyValueType::doublenumeric },
@@ -436,13 +436,13 @@ const std::map<KeyValue::KeyType, KeyValueType> KeyValue::_keytype_mapping = {
 	{location,			KeyValueType::text}
 	
 };
-
+*/
 //==============================================================================
 KeyValue::KeyValue() {
 	first_number = 0 ;
 	second_number = 0 ;
 	enum_key = KeyType::undefined;
-	value_type = KeyValueType::undefined ;
+	
 }
 //==============================================================================
 KeyValue::KeyType KeyValue::lookupKeyEnum(const std::string &key){
@@ -451,15 +451,6 @@ KeyValue::KeyType KeyValue::lookupKeyEnum(const std::string &key){
 		return iter->second ;
 	}
 	return undefined ;
-}
-//==============================================================================
-KeyValueType KeyValue::lookupKeyType(KeyValue::KeyType keyenum){
-	auto iter = KeyValue::_keytype_mapping.find(keyenum) ;
-	if (iter != KeyValue::_keytype_mapping.end()) {
-		return iter->second ;
-	}
-	return KeyValueType::undefined ;
-
 }
 //==============================================================================
 std::string KeyValue::description() const {

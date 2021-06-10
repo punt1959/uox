@@ -992,9 +992,10 @@
 		649A1B5826722B2E0063077E /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				649A20B026722D600063077E /* ConfigOS.h */,
+				649A1EE826722D5E0063077E /* main.cpp */,
 				649A20B426722D600063077E /* Functions */,
 				649A20AC26722D600063077E /* Global */,
-				649A1EE826722D5E0063077E /* main.cpp */,
 				649A1F0326722D5F0063077E /* Network */,
 				649A209D26722D600063077E /* Objects */,
 				649A20BB26722D600063077E /* Storage-List */,
@@ -1699,13 +1700,13 @@
 			isa = PBXGroup;
 			children = (
 				649A1EE026722D5E0063077E /* KeyValue.cpp */,
+				649A1EE726722D5E0063077E /* KeyValue.hpp */,
 				649A1EE126722D5E0063077E /* DataSettings.cpp */,
-				649A1EE226722D5E0063077E /* DataSection.hpp */,
-				649A1EE326722D5E0063077E /* DataCategory.cpp */,
 				649A1EE426722D5E0063077E /* DataSettings.hpp */,
 				649A1EE526722D5E0063077E /* DataSection.cpp */,
+				649A1EE226722D5E0063077E /* DataSection.hpp */,
+				649A1EE326722D5E0063077E /* DataCategory.cpp */,
 				649A1EE626722D5E0063077E /* DataCategory.hpp */,
-				649A1EE726722D5E0063077E /* KeyValue.hpp */,
 			);
 			path = TextProcessing;
 			sourceTree = "<group>";
@@ -1714,21 +1715,21 @@
 			isa = PBXGroup;
 			children = (
 				649A1EEA26722D5E0063077E /* IDX.hpp */,
-				649A1EEB26722D5E0063077E /* Tiles.cpp */,
-				649A1EEC26722D5E0063077E /* Multi.hpp */,
-				649A1EED26722D5E0063077E /* BaseMap.hpp */,
-				649A1EEE26722D5E0063077E /* Statics.hpp */,
-				649A1EEF26722D5E0063077E /* Map.hpp */,
-				649A1EF026722D5E0063077E /* UOPData.hpp */,
-				649A1EF126722D5E0063077E /* StaMap.cpp */,
-				649A1EF226722D5E0063077E /* Map.cpp */,
-				649A1EF326722D5E0063077E /* UOPData.cpp */,
-				649A1EF426722D5E0063077E /* StaMap.hpp */,
 				649A1EF526722D5E0063077E /* IDX.cpp */,
+				649A1EEB26722D5E0063077E /* Tiles.cpp */,
 				649A1EF626722D5E0063077E /* Tiles.hpp */,
+				649A1EEC26722D5E0063077E /* Multi.hpp */,
 				649A1EF726722D5E0063077E /* Multi.cpp */,
+				649A1EED26722D5E0063077E /* BaseMap.hpp */,
 				649A1EF826722D5E0063077E /* BaseMap.cpp */,
+				649A1EEE26722D5E0063077E /* Statics.hpp */,
 				649A1EF926722D5E0063077E /* Statics.cpp */,
+				649A1EEF26722D5E0063077E /* Map.hpp */,
+				649A1EF226722D5E0063077E /* Map.cpp */,
+				649A1EF026722D5E0063077E /* UOPData.hpp */,
+				649A1EF326722D5E0063077E /* UOPData.cpp */,
+				649A1EF126722D5E0063077E /* StaMap.cpp */,
+				649A1EF426722D5E0063077E /* StaMap.hpp */,
 			);
 			path = UOData;
 			sourceTree = "<group>";
@@ -1737,13 +1738,13 @@
 			isa = PBXGroup;
 			children = (
 				649A1EFB26722D5E0063077E /* Logger.hpp */,
-				649A1EFC26722D5E0063077E /* StringUtility.cpp */,
-				649A1EFD26722D5E0063077E /* TimeUtility.cpp */,
-				649A1EFE26722D5E0063077E /* Buffer.cpp */,
-				649A1EFF26722D5E0063077E /* TimeUtility.hpp */,
-				649A1F0026722D5E0063077E /* Buffer.hpp */,
 				649A1F0126722D5E0063077E /* Logger.cpp */,
+				649A1EFC26722D5E0063077E /* StringUtility.cpp */,
 				649A1F0226722D5E0063077E /* StringUtility.hpp */,
+				649A1EFE26722D5E0063077E /* Buffer.cpp */,
+				649A1F0026722D5E0063077E /* Buffer.hpp */,
+				649A1EFD26722D5E0063077E /* TimeUtility.cpp */,
+				649A1EFF26722D5E0063077E /* TimeUtility.hpp */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -1751,23 +1752,23 @@
 		649A1F0326722D5F0063077E /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				649A200526722D5F0063077E /* incoming */,
+				649A1F4D26722D5F0063077E /* outgoing */,
 				649A1F0426722D5F0063077E /* bidirectional */,
 				649A1F4926722D5F0063077E /* ServerSocket.hpp */,
+				649A209B26722D600063077E /* ServerSocket.cpp */,
 				649A1F4A26722D5F0063077E /* IP4Address.hpp */,
+				649A209C26722D600063077E /* IP4Address.cpp */,
 				649A1F4B26722D5F0063077E /* PacketHandler.cpp */,
-				649A1F4C26722D5F0063077E /* Socket.cpp */,
-				649A1F4D26722D5F0063077E /* outgoing */,
-				649A1FFE26722D5F0063077E /* GSocket.hpp */,
-				649A1FFF26722D5F0063077E /* Packet.cpp */,
 				649A200026722D5F0063077E /* PacketHandler.hpp */,
 				649A200126722D5F0063077E /* Socket.hpp */,
+				649A1F4C26722D5F0063077E /* Socket.cpp */,
 				649A200226722D5F0063077E /* GSocket.cpp */,
+				649A1FFE26722D5F0063077E /* GSocket.hpp */,
+				649A1FFF26722D5F0063077E /* Packet.cpp */,
 				649A200326722D5F0063077E /* Packet.hpp */,
 				649A200426722D5F0063077E /* create_packet.h */,
-				649A200526722D5F0063077E /* incoming */,
 				649A209A26722D600063077E /* packet_sizes.h */,
-				649A209B26722D600063077E /* ServerSocket.cpp */,
-				649A209C26722D600063077E /* IP4Address.cpp */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -2209,13 +2210,12 @@
 		649A20AC26722D600063077E /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				649A20B126722D600063077E /* enums.h */,
 				649A20AD26722D600063077E /* Maps.cpp */,
+				649A20B326722D600063077E /* Maps.hpp */,
 				649A20AE26722D600063077E /* typedefs.h */,
 				649A20AF26722D600063077E /* Configuration.hpp */,
-				649A20B026722D600063077E /* ConfigOS.h */,
-				649A20B126722D600063077E /* enums.h */,
 				649A20B226722D600063077E /* Configuration.cpp */,
-				649A20B326722D600063077E /* Maps.hpp */,
 			);
 			path = Global;
 			sourceTree = "<group>";

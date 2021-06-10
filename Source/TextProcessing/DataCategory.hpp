@@ -32,7 +32,7 @@ private:
 	std::shared_ptr<KeyValue> processLine(const std::string line,const std::string &filepath ="", int linenumber = 0);
 	std::map<std::string,int> retreivePostFiles() ;
 	std::tuple<std::string,std::string> parseKeyValue(const std::string& data,const std::string &sep = "=") ;
-	std::tuple<int,int> convertToInt(const std::string& value, const std::string &sep = " ");
+	std::tuple<std::string,std::string> convertToTwo(const std::string& value, const std::string &sep = " ");
 
 protected:
 	

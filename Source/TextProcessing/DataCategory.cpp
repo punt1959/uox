@@ -82,63 +82,23 @@ std::shared_ptr<KeyValue> DataCategory::processLine(const std::string line,const
 		rvalue->fileorigin=filepath ;
 		rvalue->linenumber = linenumber ;
 		auto parsed = parseKeyValue(line);
-		auto key = std::get<0>(parsed) ;
-		auto upper_key = strutil::toupper(key);
-		auto text = std::get<1>(parsed) ;
-		rvalue->upper_key = upper_key;
-		rvalue->key = key ;
-		auto enum_key = KeyValue::lookupKeyEnum(upper_key);
+		rvalue->key = std::get<0>(parsed) ;
+		rvalue->upper_key = strutil::toupper(rvalue->key);
+		rvalue->enum_key = KeyValue::lookupKeyEnum(rvalue->upper_key);
+		rvalue->text = std::get<1>(parsed) ;
+		rvalue->upper_text = strutil::toupper(rvalue->text);
 		
-		rvalue->enum_key = enum_key;
-		
-		rvalue->value_type = KeyValue::lookupKeyType(enum_key);
-		
-		rvalue->text = text ;
-		rvalue->upper_text = strutil::toupper(text);
-		
-		
-		
-		// We have a chance to do some format checking here
-		switch (rvalue->value_type) {
-			case KeyValueType::nodata:
-				if (!text.empty()){
-					throw std::runtime_error(std::string("Key: '")+rvalue->key+std::string("' identifed as 'nodata', but value was present: '" + rvalue->text+"' .  Entry found at: ")+rvalue->origin());
-					
-				}
-				break;
-			case KeyValueType::text:
-			case KeyValueType::uppertext:
-				if (rvalue->text.empty()){
-					throw std::runtime_error(std::string("Key: '")+rvalue->key+std::string("' identifed as 'text/uppertext', but no value present.  Entry found at: ")+rvalue->origin());
-				}
-				break;
-			case KeyValueType::numeric:
-			{
-				try {
-					rvalue->first_number = std::stoi(rvalue->text,nullptr,0);
-				}
-				catch(...){
-					throw std::runtime_error(std::string("Key: '")+rvalue->key+std::string("' identifed as 'numeric', but value not a number: '"+ rvalue->text + "' .  Entry found at: ")+rvalue->origin());
-				}
-			}
-				break;
-			case KeyValueType::doublenumeric:
-			{
-				try {
-					auto numbers = convertToInt(text);
-					rvalue->first_number = std::get<0>(numbers) ;
-					rvalue->second_number=std::get<1>(numbers);
-				}
-				catch(...) {
-					throw std::runtime_error(std::string("Key: '")+rvalue->key+std::string("' identifed as 'double numeric', but two numbers not specified: '"+ rvalue->text + "' .  Entry found at: ")+rvalue->origin());
-				}
-				
-			}
-				break;
-				
-			default:				// No syntax checking done
-				break;
+		// we are going to try to get nummbers since they are common used
+		auto pair = convertToTwo(rvalue->text);
+		try {
+			rvalue->first_number = std::stoi(std::get<0>(pair),nullptr,0);
+			rvalue->second_number = rvalue->first_number ;
+			rvalue->second_number = std::stoi(std::get<1>(pair),nullptr,0);
 		}
+		catch(...){
+			// do nothing, just keep going
+		}
+
 	}
 	
 	return rvalue ;
@@ -190,28 +150,17 @@ std::tuple<std::string,std::string> DataCategory::parseKeyValue(const std::strin
 }
 
 //=============================================================================
-std::tuple<int,int> DataCategory::convertToInt(const std::string& value, const std::string &sep){
-	int first = 0 ;
-	int second = 0 ;
+std::tuple<std::string,std::string> DataCategory::convertToTwo(const std::string& value, const std::string &sep){
+	std::string first =value ;
+	std::string second ;
 	auto loc= value.find(sep) ;
 	if (loc != std::string::npos){
-		try {
-			first = std::stoi(value.substr(0,loc),nullptr,0) ;
-			if ((loc+1)<value.size() ){
-				second = std::stoi(value.substr(loc+1),nullptr,0);
-			}
-			else {
-				throw std::runtime_error("Unable to process two numbers");
-			}
+		first = value.substr(0,loc) ;
+		if ((loc+1) < value.size()) {
+			second = strutil::trim(value.substr(loc+1));
 		}
-		catch(...){
-			throw std::runtime_error("Unable to process two numbers");
-		}
-		
 	}
-	else {
-		throw std::runtime_error("Unable to process two numbers");
-	}
+
 	return std::make_tuple(first,second);
 }
 

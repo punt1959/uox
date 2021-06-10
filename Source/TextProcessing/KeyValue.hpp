@@ -7,11 +7,13 @@
 #include <cstdint>
 #include <string>
 #include <map>
+#include <limits>
 
+/*
 enum class KeyValueType {
 	undefined=-1,numeric,text, uppertext,nodata,unknown,doublenumeric};
 
-
+*/
 
 struct KeyValue {
 	enum KeyType {
@@ -46,17 +48,17 @@ struct KeyValue {
 		walkingspeed, weigth, maxweight, will_hunger, wipe, wrestling,location };
 	
 	static const std::map<std::string, KeyType> _keyenum_mapping ;
-	static const std::map<KeyType, KeyValueType> _keytype_mapping ;
+//	static const std::map<KeyType, KeyValueType> _keytype_mapping ;
 
 	std::string fileorigin;
 	int linenumber ;
-	
+	bool typecheck;
 	std::string original_line ;
 	
 	std::string key ;
 	std::string upper_key ;
 	KeyType enum_key ;
-	KeyValueType value_type ;
+	//KeyValueType value_type ;
 	
 	std::string text ;
 	std::string upper_text;
@@ -67,7 +69,7 @@ struct KeyValue {
 	std::string description() const ;
 	std::string origin() const ;
 	static KeyType lookupKeyEnum(const std::string &key);
-	static KeyValueType lookupKeyType(KeyType keyenum);
+//	static KeyValueType lookupKeyType(KeyType keyenum);
 };
 
 #endif /* KeyValue_hpp */
