@@ -28,12 +28,13 @@ namespace UO {
 		void updateHash() ;
 		void processData(std::vector<unsigned char> &data, std::uint32_t chunkid) override;
 		std::size_t calcIndex(int x, int y) ;
-
+		bool _uop = false ;
 	public:
 		Map(int mapnum=0,const std::string &mapfile="",int cellX=0,int cellY=0);
 		void load(const std::string &mapfile,int mapnum =-1,int cellX=-1,int cellY=-1 );
 		map_tile tile(int x, int y);
 		int applyDiff(const std::string &difflpath, const std::string &diffpath);
+		bool uop() const { return _uop;}
 
 	};
 }

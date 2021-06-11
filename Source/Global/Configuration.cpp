@@ -248,3 +248,13 @@ void Configuration::loadDefinitions( const std::string &path) {
 	}
 	
 }
+
+//===========================================================================
+std::map<std::string,std::shared_ptr<DataSection> > Configuration::sections(DataCategory::Category cat){
+	return _categories[cat].sections();
+}
+
+//===========================================================================
+std::shared_ptr<DataSection> Configuration::section(DataCategory::Category cat, const std::string & section){
+	return _categories[cat].section(section) ;
+}

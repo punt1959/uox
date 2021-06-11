@@ -67,6 +67,7 @@ namespace UO {
 			throw std::runtime_error(std::string("Unable to open mapfile: ")+mapfile);
 		}
 		if (path.extension() == ".uop"){
+			_uop = true ;
 			loadUOP(input);
 		}
 		else {
@@ -91,32 +92,37 @@ namespace UO {
 	
 	//=======================================================================
 	int Map::applyDiff(const std::string &difflpath, const std::string &diffpath) {
-		std::ifstream diffl(difflpath, std::ios::in|std::ios::binary);
-		if (!diffl.is_open()) {
-			throw std::runtime_error(std::string("Unable to open: ")+difflpath) ;
-		}
-		
-		std::ifstream diff(diffpath, std::ios::in|std::ios::binary);
-		if (!diff.is_open()) {
-			throw std::runtime_error(std::string("Unable to open: ")+diffpath) ;
-		}
-		int blocknum = 0 ;
-		auto count = 0 ;
-		std::vector<unsigned char> tempdata ;
-		tempdata.resize(_mapblocksize);
-		while (!diffl.eof()) {
+		_diffCount = 0 ;
+		if (!_uop){
 			
-			diffl.read(reinterpret_cast<char*>(&blocknum),4);
-			if (diffl.gcount()==4){
-				count++ ;
-				diff.read(reinterpret_cast<char*>(tempdata.data()),_mapblocksize);
-				
-				std::swap_ranges(tempdata.begin(), tempdata.end(), _mapdata.begin()+blocknum*_mapblocksize);
+			
+			std::ifstream diffl(difflpath, std::ios::in|std::ios::binary);
+			if (!diffl.is_open()) {
+				throw std::runtime_error(std::string("Unable to open: ")+difflpath) ;
 			}
+			
+			std::ifstream diff(diffpath, std::ios::in|std::ios::binary);
+			if (!diff.is_open()) {
+				throw std::runtime_error(std::string("Unable to open: ")+diffpath) ;
+			}
+			int blocknum = 0 ;
+			auto count = 0 ;
+			std::vector<unsigned char> tempdata ;
+			tempdata.resize(_mapblocksize);
+			while (!diffl.eof()) {
+				
+				diffl.read(reinterpret_cast<char*>(&blocknum),4);
+				if (diffl.gcount()==4){
+					count++ ;
+					diff.read(reinterpret_cast<char*>(tempdata.data()),_mapblocksize);
+					
+					std::swap_ranges(tempdata.begin(), tempdata.end(), _mapdata.begin()+blocknum*_mapblocksize);
+				}
+			}
+			diff.close();
+			diffl.close();
+			_diffCount= count ;
 		}
-		diff.close();
-		diffl.close();
-		_diffCount= count ;
 		return _diffCount ;
 	}
 }

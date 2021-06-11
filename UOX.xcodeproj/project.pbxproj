@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6470F7932672F3950023CAE8 /* MultiCollection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6470F7912672F3950023CAE8 /* MultiCollection.cpp */; };
 		649A1B6226722B7A0063077E /* libz.1.1.3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 649A1B6126722B7A0063077E /* libz.1.1.3.tbd */; };
 		649A20BE26722D600063077E /* KeyValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 649A1EE026722D5E0063077E /* KeyValue.cpp */; };
 		649A20BF26722D600063077E /* DataSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 649A1EE126722D5E0063077E /* DataSettings.cpp */; };
@@ -252,6 +253,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6470F78F267296060023CAE8 /* maps.dfn */ = {isa = PBXFileReference; lastKnownFileType = text; path = maps.dfn; sourceTree = "<group>"; };
+		6470F790267296060023CAE8 /* tiles.dfn */ = {isa = PBXFileReference; lastKnownFileType = text; path = tiles.dfn; sourceTree = "<group>"; };
+		6470F7912672F3950023CAE8 /* MultiCollection.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MultiCollection.cpp; sourceTree = "<group>"; };
+		6470F7922672F3950023CAE8 /* MultiCollection.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MultiCollection.hpp; sourceTree = "<group>"; };
 		649A1B5626722B2E0063077E /* UOX */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UOX; sourceTree = BUILT_PRODUCTS_DIR; };
 		649A1B6126722B7A0063077E /* libz.1.1.3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.1.3.tbd; path = usr/lib/libz.1.1.3.tbd; sourceTree = SDKROOT; };
 		649A1DBF26722D230063077E /* uoxr.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; path = uoxr.cfg; sourceTree = "<group>"; };
@@ -971,6 +976,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6470F78E267295160023CAE8 /* maps */ = {
+			isa = PBXGroup;
+			children = (
+				6470F78F267296060023CAE8 /* maps.dfn */,
+				6470F790267296060023CAE8 /* tiles.dfn */,
+			);
+			path = maps;
+			sourceTree = "<group>";
+		};
 		649A1B4D26722B2E0063077E = {
 			isa = PBXGroup;
 			children = (
@@ -1083,29 +1097,30 @@
 		649A1DC626722D230063077E /* Definitions */ = {
 			isa = PBXGroup;
 			children = (
-				649A1DC726722D230063077E /* misc */,
-				649A1DCB26722D230063077E /* regions */,
+				649A1DDF26722D240063077E /* advance */,
+				649A1EDD26722D240063077E /* carve */,
+				649A1DE326722D240063077E /* colors */,
+				649A1DF326722D240063077E /* command */,
 				649A1DCD26722D230063077E /* config */,
-				649A1DD226722D230063077E /* location */,
+				649A1EAF26722D240063077E /* create */,
+				649A1EAD26722D240063077E /* creatures */,
+				649A1DE926722D240063077E /* house */,
 				649A1DD426722D240063077E /* html */,
+				649A1DF526722D240063077E /* items */,
+				649A1DD226722D230063077E /* location */,
+				6470F78E267295160023CAE8 /* maps */,
+				649A1DEB26722D240063077E /* menus */,
+				649A1DC726722D230063077E /* misc */,
 				649A1DDB26722D240063077E /* msgboard */,
 				649A1DDD26722D240063077E /* newbie */,
-				649A1DDF26722D240063077E /* advance */,
-				649A1DE126722D240063077E /* titles */,
-				649A1DE326722D240063077E /* colors */,
-				649A1DE526722D240063077E /* spells */,
-				649A1DE726722D240063077E /* race */,
-				649A1DE926722D240063077E /* house */,
-				649A1DEB26722D240063077E /* menus */,
-				649A1DEF26722D240063077E /* weather */,
-				649A1DF126722D240063077E /* skills */,
-				649A1DF326722D240063077E /* command */,
-				649A1DF526722D240063077E /* items */,
-				649A1EAD26722D240063077E /* creatures */,
-				649A1EAF26722D240063077E /* create */,
 				649A1EC226722D240063077E /* npc */,
+				649A1DE726722D240063077E /* race */,
+				649A1DCB26722D230063077E /* regions */,
 				649A1EDB26722D240063077E /* spawn */,
-				649A1EDD26722D240063077E /* carve */,
+				649A1DE526722D240063077E /* spells */,
+				649A1DF126722D240063077E /* skills */,
+				649A1DE126722D240063077E /* titles */,
+				649A1DEF26722D240063077E /* weather */,
 			);
 			path = Definitions;
 			sourceTree = "<group>";
@@ -2213,6 +2228,8 @@
 				649A20B126722D600063077E /* enums.h */,
 				649A20AD26722D600063077E /* Maps.cpp */,
 				649A20B326722D600063077E /* Maps.hpp */,
+				6470F7912672F3950023CAE8 /* MultiCollection.cpp */,
+				6470F7922672F3950023CAE8 /* MultiCollection.hpp */,
 				649A20AE26722D600063077E /* typedefs.h */,
 				649A20AF26722D600063077E /* Configuration.hpp */,
 				649A20B226722D600063077E /* Configuration.cpp */,
@@ -2453,6 +2470,7 @@
 				649A219126722D600063077E /* Packet0xB1.cpp in Sources */,
 				649A211926722D600063077E /* Packet0x36.cpp in Sources */,
 				649A217E26722D600063077E /* Packet0x69.cpp in Sources */,
+				6470F7932672F3950023CAE8 /* MultiCollection.cpp in Sources */,
 				649A213326722D600063077E /* Packet0xC0.cpp in Sources */,
 				649A217726722D600063077E /* Packet0x4D.cpp in Sources */,
 				649A20C826722D600063077E /* Multi.cpp in Sources */,

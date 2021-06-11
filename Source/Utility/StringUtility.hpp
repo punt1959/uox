@@ -6,7 +6,7 @@
 #include <cstdint>
 #include <string>
 #include <type_traits>
-
+#include <tuple>
 
 namespace strutil {
 	// Trim a string of all leading whitespace
@@ -35,6 +35,8 @@ namespace strutil {
 	// Format a string
 	std::string format(const char * expr,...);
 	
+	// Seperate a string by a sep
+	std::tuple<std::string,std::string> split(const std::string &value, const std::string &sep);
 
 }
 

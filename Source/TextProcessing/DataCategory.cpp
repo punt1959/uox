@@ -36,6 +36,7 @@ const  std::map<DataCategory::Category,std::string> DataCategory::directories = 
 	{msgboard,"msgboard"},
 	{carve,"carve"},
 	{creature,"creatures"},
+	{map,"maps"},
 	{DataCategory::Category::config,"config"}
 };
 const std::map<std::string,DataCategory::Category> DataCategory::catmapping ={
@@ -58,6 +59,7 @@ const std::map<std::string,DataCategory::Category> DataCategory::catmapping ={
 	{"msgboard", DataCategory::Category::msgboard},
 	{"carve", DataCategory::Category::carve},
 	{"creature", DataCategory::Category::creature},
+	{"map", DataCategory::Category::map},
 	{"config", DataCategory::Category::config}
 };
 
@@ -89,7 +91,7 @@ std::shared_ptr<KeyValue> DataCategory::processLine(const std::string line,const
 		rvalue->upper_text = strutil::toupper(rvalue->text);
 		
 		// we are going to try to get nummbers since they are common used
-		auto pair = convertToTwo(rvalue->text);
+		auto pair = strutil::split(rvalue->text," ");
 		try {
 			rvalue->first_number = std::stoi(std::get<0>(pair),nullptr,0);
 			rvalue->second_number = rvalue->first_number ;
@@ -149,20 +151,6 @@ std::tuple<std::string,std::string> DataCategory::parseKeyValue(const std::strin
 	return std::make_tuple(key,value);
 }
 
-//=============================================================================
-std::tuple<std::string,std::string> DataCategory::convertToTwo(const std::string& value, const std::string &sep){
-	std::string first =value ;
-	std::string second ;
-	auto loc= value.find(sep) ;
-	if (loc != std::string::npos){
-		first = value.substr(0,loc) ;
-		if ((loc+1) < value.size()) {
-			second = strutil::trim(value.substr(loc+1));
-		}
-	}
-
-	return std::make_tuple(first,second);
-}
 
 //=============================================================================
 void  DataCategory::loadFile(const std::string& filepath){
@@ -238,7 +226,7 @@ void  DataCategory::loadFile(const std::string& filepath){
 }
 
 //=============================================================================
-std::shared_ptr<DataSection> DataCategory::section(const std::string& name){
+std::shared_ptr<DataSection> DataCategory::section(const std::string& name) const{
 	auto iter = _sections.find(strutil::toupper(name));
 	if (iter != _sections.end()) {
 		return iter->second;
@@ -305,7 +293,7 @@ std::size_t DataCategory::size() const  {
 	return _sections.size();
 }
 //=============================================================================
-std::map<std::string,std::shared_ptr<DataSection> > DataCategory::sections() const {
+std::map<std::string,std::shared_ptr<DataSection> > DataCategory::sections()  {
 	return _sections;
 }
 

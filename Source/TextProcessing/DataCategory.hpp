@@ -21,7 +21,7 @@
 
 class DataCategory {
 public:
-	enum Category { invalid = -1, item = 0,npc,create,region,misc,skill,location,menu,spell,newbie,title,advance,house,color,spawn,html,race,weather,command,msgboard,carve,creature,config};
+	enum Category { invalid = -1, item = 0,npc,create,region,misc,skill,location,menu,spell,newbie,title,advance,house,color,spawn,html,race,weather,command,msgboard,carve,creature,map,config};
 private:
 
 	Category _mycategory ;
@@ -32,7 +32,6 @@ private:
 	std::shared_ptr<KeyValue> processLine(const std::string line,const std::string &filepath ="", int linenumber = 0);
 	std::map<std::string,int> retreivePostFiles() ;
 	std::tuple<std::string,std::string> parseKeyValue(const std::string& data,const std::string &sep = "=") ;
-	std::tuple<std::string,std::string> convertToTwo(const std::string& value, const std::string &sep = " ");
 
 protected:
 	
@@ -45,11 +44,11 @@ public:
 	void loadData(const std::string &directory, Category category,const std::string &extension=".dfn") ;
 	void loadFile(const std::string& filepath);
 
-	std::shared_ptr<DataSection> section(const std::string& name);
+	std::shared_ptr<DataSection> section(const std::string& name) const;
 	std::shared_ptr<DataSection> containsName(const std::string& name);
 	
 	std::size_t size() const ;
-	std::map<std::string,std::shared_ptr<DataSection> > sections() const;
+	std::map<std::string,std::shared_ptr<DataSection> > sections() ;
 	
 	Category category() const ;
 	void setCategory(Category value);

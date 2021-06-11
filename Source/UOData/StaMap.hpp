@@ -18,7 +18,7 @@ namespace UO {
 	protected:
 		
 	public:
-		
+		StaMap() ;
 		// -1 for default sizes on cellX,cellY
 		StaMap(int  mapnum,int cellX, int cellY, const std::string &mapfile, const std::string &staidx, const std::string &stamul);
 		

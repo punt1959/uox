@@ -40,7 +40,7 @@ protected:
 	void loadDirectory(std::shared_ptr<DataSection> &section);
 	void loadServer(std::shared_ptr<DataSection> &section);
 	void validateDirectory() ;
-	
+
 	
 public:
 	~Configuration();
@@ -50,10 +50,14 @@ public:
 
 	void loadBase(const std::string &filename);
 	void loadDefinitions( const std::string &path);
-	std::shared_ptr<DataSection> section(DataCategory::Category cat, const std::string & section);
+	
+	// Lets get all the sections for a category
+	std::map<std::string,std::shared_ptr<DataSection> > sections(DataCategory::Category cat) ;
+	
+	std::shared_ptr<DataSection> section(DataCategory::Category cat, const std::string & section) ;
 	
 	
-	
+	// Configuration file info
 	std::filesystem::path  uodir() const {return _uodir;}
 	
 	std::string root() const {return _root.string();}

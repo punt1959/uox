@@ -13,6 +13,7 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++
 
 namespace UO {
+	//=====================================================================================
 	StaMap::StaMap(int mapnum,int cellX, int cellY, const std::string &mapfile, const std::string &staidx, const std::string &stamul){
 		_mapnum = mapnum;
 		_map.setMap(mapnum,cellX,cellY);
@@ -22,6 +23,9 @@ namespace UO {
 		_statics.setMap(mapnum,cellX,cellY);
 		_statics.load(staidx, stamul);
 	}
-	
+	//=====================================================================================
+	StaMap::StaMap() {
+		_mapnum = 0 ;
+	}
 	
 }

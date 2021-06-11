@@ -12,6 +12,7 @@
 #include "ServerSocket.hpp"
 #include "Logger.hpp"
 #include "Tiles.hpp"
+#include "Maps.hpp"
 #include "PlayerList.hpp"
 
 int main(int argc, const char * argv[]) {
@@ -27,17 +28,19 @@ int main(int argc, const char * argv[]) {
 		// Load the base configuration file
 		std::cout << "Processing configuration file: " << config_file << std::endl;
 		Configuration::shared().loadBase(config_file);
-		
+		// Load the definitions, we need that before we can load maps from UOData
+		std::cout << "Loading definitions." << std::endl;
+		Configuration::shared().loadDefinitions(Configuration::shared().definition());
 		// Load UO data. Tiles must be loaded before anything else, as it is used in all other loadinds of UO data.
 		auto uodir = Configuration::shared().uodir();
 		auto tiledata = uodir / std::filesystem::path("tiledata.mul");
 		std::cout <<"Loading Tile data from "<<tiledata.string()<<std::endl;
 		UO::Tiles::shared(tiledata.string());
 		
-		
-		std::cout <<"Loading definitions"<< std::endl;
-		Configuration::shared().loadDefinitions( Configuration::shared().definition());
-		
+		// Load map data
+		std::cout <<"Loading Map data"<<std::endl;
+		auto mapsections = Configuration::shared().sections(DataCategory::Category::map);
+		Maps::shared(uodir,mapsections);
 		std::cout <<"Setting external IP to " <<Configuration::shared().ip()<<std::endl;
 		// Set the ip to use for wan users ;
 		IP4Address::setExternal(Configuration::shared().ip());
